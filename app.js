@@ -10,7 +10,11 @@ app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
     res.render('index', {title: 'Home'});
-})
+});
+
+app.get('/create-poll', (req, res) => {
+    res.render('create-poll', {title: 'Create a poll'});
+});
 
 
 app.listen(PORT);
