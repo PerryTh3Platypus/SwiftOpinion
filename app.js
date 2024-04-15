@@ -5,10 +5,13 @@ var configJSON = JSON.parse(fs.readFileSync('swift-opinion-config.json', 'utf8')
 const PORT = configJSON.PORT;
 
 const app = express();
+app.set('view engine', 'ejs');
 
-console.log("PORT: " + PORT);
-app.listen(PORT);
 
 app.get('/', (req, res) => {
-    console.log(req.url);
+    res.render('index', {title: 'Home'});
 })
+
+
+app.listen(PORT);
+console.log("Listening on port " + PORT);
