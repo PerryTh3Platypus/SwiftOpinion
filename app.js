@@ -16,6 +16,11 @@ app.get('/create-poll', (req, res) => {
     res.render('create-poll', {title: 'Create a poll'});
 });
 
+// 404 page
+app.use((req, res) => {
+    res.status(404).render('404', { title: '404' });
+  });
+
 
 app.listen(PORT);
 console.log("Listening on port " + PORT);
