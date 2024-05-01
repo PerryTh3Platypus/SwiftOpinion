@@ -7,6 +7,12 @@ const PORT = configJSON.PORT;
 const app = express();
 app.set('view engine', 'ejs');
 
+app.listen(PORT);
+console.log("Listening on port " + PORT);
+
+// make available static files/resources
+app.use(express.static('public'));
+
 
 app.get('/', (req, res) => {
     res.render('index', {title: 'Home'});
@@ -22,5 +28,3 @@ app.use((req, res) => {
   });
 
 
-app.listen(PORT);
-console.log("Listening on port " + PORT);
