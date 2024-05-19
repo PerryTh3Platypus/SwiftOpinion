@@ -3,6 +3,30 @@
 
 <body>
     <%- include("./partials/nav.ejs") %>
+    <div class="create-poll content">
+        <form action="/poll" method="POST" id="add-poll-form">
+            <label for="title">Poll Title: </label>
+            <input type="text" id="title" name="title" required>
+            <div id="attributes">
+                <div>
+                    <label for="option">Poll Options: </label><br>
+                    <input type="text", name="keys[]", placeholder="Option" required>
+                </div>
+            </div>
+
+            <button type="button", onclick="addKeyInput()">Add Option</button><br><br>
+            <button type="sumbit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function addKeyInput() {
+            const attributesDiv = document.getElementById('attributes');
+            const newDiv = document.createElement('div');
+            newDiv.innerHTML = `<input type="text", name="keys[]", placeholder="Option" required>`;
+            attributesDiv.appendChild(newDiv);
+        }
+    </script>
     <%- include("./partials/footer.ejs") %>
 </body>
 </html>

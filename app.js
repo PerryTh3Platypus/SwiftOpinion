@@ -25,6 +25,7 @@ mongoose.connect(dbURI)
 
 // make available static files/resources
 app.use(express.static('public'));
+app.use(express.urlencoded({extended: true}));
 
 
 app.get('/', (req, res) => {
@@ -35,24 +36,27 @@ app.get('/create-poll', (req, res) => {
     res.render('create-poll', {title: 'Create a poll'});
 });
 
-// testing mongoose
-app.get('/add-poll', (req, res) => {
-    const poll = new Poll({
-        title: 'new poll',
-        options: {
-            a: 1,
-            b: 2,
-            c: 3
-        }
-    });
+app.post('/poll', (req, res) => {
+    console.log(req.body);
+    const submittedPoll = req.body;
+    const pollOptions = Array.from(submittedPoll.keys);
+    const poll = new Poll();
+    poll.title = submittedPoll.title;
+    poll.options = {};
 
+    for (let i = 0; i < pollOptions.length; i++){
+        poll.options.set(pollOptions[i], 0);
+    }
+
+    const pollId = poll._id;
     poll.save()
         .then((result) => {
-            res.send(result)
+            res.render('success', {title: 'Success', pollCode: pollId});
         })
         .catch((err) => {
             console.log(err);
         });
+
 })
 
 // 404 page
