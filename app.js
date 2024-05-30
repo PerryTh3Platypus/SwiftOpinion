@@ -59,6 +59,23 @@ app.post('/poll', (req, res) => {
 
 })
 
+app.get('/poll/:id', (req, res) => {
+    const id = req.params.id;
+    Poll.findById(id)
+        .then(result => {
+            res.render('vote', {title: "Vote", poll: result})
+        })
+        .catch(err => {
+            console.log(err);
+            res.render('404', {title: "404"});
+        })
+})
+
+app.post('/find-poll', (req, res) => {
+    //console.log(req.body);
+    res.redirect('/poll/' + req.body.id);
+})
+
 // 404 page
 app.use((req, res) => {
     res.status(404).render('404', { title: '404' });

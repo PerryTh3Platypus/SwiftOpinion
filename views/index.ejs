@@ -4,8 +4,11 @@
 <body>
     <%- include("./partials/nav.ejs") %>
     <div class="poll-finder">
-        <h3>Find a poll</h3>
-        <p>Find poll function here</p>
+        <form action="/find-poll" method="POST" id="find-poll-form">
+            <label for="id">Poll Id: </label>
+            <input type="text" id="id" name="id" placeholder="id" required>
+            <button type="sumbit">Find</button>
+        </form>
     </div>
 
     
