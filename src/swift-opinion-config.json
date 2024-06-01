@@ -1,0 +1,4 @@
+{
+    "PORT":3000,
+    "dbURI": "ADD_YOUR_MONGO_DB_URI_HERE"
+}

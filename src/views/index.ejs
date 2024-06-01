@@ -1,0 +1,17 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+    <%- include("./partials/nav.ejs") %>
+    <div class="poll-finder">
+        <form action="/find-poll" method="POST" id="find-poll-form">
+            <label for="id">Poll Id: </label>
+            <input type="text" id="id" name="id" placeholder="id" required>
+            <button type="sumbit">Find</button>
+        </form>
+    </div>
+
+    
+    <%- include("./partials/footer.ejs") %>
+</body>
+</html>
